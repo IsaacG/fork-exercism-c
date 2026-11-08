@@ -79,7 +79,7 @@ static void test_rejects_empty_string_and_nonzero_span(void)
 static void test_rejects_invalid_character_in_digits(void)
 {
    TEST_IGNORE();
-   TEST_ASSERT_EQUAL(-1, largest_series_product("123a5", 2));
+   TEST_ASSERT_EQUAL(-1, largest_series_product("1234a5", 2));
 }
 
 static void test_rejects_negative_span(void)
