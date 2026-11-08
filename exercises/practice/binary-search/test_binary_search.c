@@ -16,7 +16,7 @@ static void test_finds_a_value_in_an_array_with_one_element(void)
    TEST_ASSERT(&arr[0] == binary_search(6, arr, length));
 }
 
-static void test_a_value_in_the_middle_of_an_array(void)
+static void test_finds_a_value_in_the_middle_of_an_array(void)
 {
    TEST_IGNORE();   // delete this line to run test
    int arr[] = { 1, 3, 4, 6, 8, 9, 11 };
@@ -65,7 +65,7 @@ static void test_identifies_that_a_value_is_not_included_in_the_array(void)
 }
 
 static void
-test_a_value_smaller_than_the_arrays_smallest_value_is_not_found(void)
+test_a_value_smaller_than_the_array_s_smallest_value_is_not_found(void)
 {
    TEST_IGNORE();
    int arr[] = { 1, 3, 4, 6, 8, 9, 11 };
@@ -73,7 +73,8 @@ test_a_value_smaller_than_the_arrays_smallest_value_is_not_found(void)
    TEST_ASSERT(NULL == binary_search(0, arr, length));
 }
 
-static void test_a_value_larger_than_the_arrays_largest_value_is_not_found(void)
+static void
+test_a_value_larger_than_the_array_s_largest_value_is_not_found(void)
 {
    TEST_IGNORE();
    int arr[] = { 1, 3, 4, 6, 8, 9, 11 };
@@ -84,8 +85,8 @@ static void test_a_value_larger_than_the_arrays_largest_value_is_not_found(void)
 static void test_nothing_is_found_in_an_empty_array(void)
 {
    TEST_IGNORE();
-   int arr[] = { 1 };
-   size_t length = 0;
+   int arr[] = {};
+   size_t length = sizeof(arr) / sizeof(arr[0]);
    TEST_ASSERT(NULL == binary_search(1, arr, length));
 }
 
@@ -102,14 +103,14 @@ int main(void)
    UNITY_BEGIN();
 
    RUN_TEST(test_finds_a_value_in_an_array_with_one_element);
-   RUN_TEST(test_a_value_in_the_middle_of_an_array);
+   RUN_TEST(test_finds_a_value_in_the_middle_of_an_array);
    RUN_TEST(test_finds_a_value_at_the_beginning_of_an_array);
    RUN_TEST(test_finds_a_value_at_the_end_of_an_array);
    RUN_TEST(test_finds_a_value_in_an_array_of_odd_length);
    RUN_TEST(test_finds_a_value_in_an_array_of_even_length);
    RUN_TEST(test_identifies_that_a_value_is_not_included_in_the_array);
-   RUN_TEST(test_a_value_smaller_than_the_arrays_smallest_value_is_not_found);
-   RUN_TEST(test_a_value_larger_than_the_arrays_largest_value_is_not_found);
+   RUN_TEST(test_a_value_smaller_than_the_array_s_smallest_value_is_not_found);
+   RUN_TEST(test_a_value_larger_than_the_array_s_largest_value_is_not_found);
    RUN_TEST(test_nothing_is_found_in_an_empty_array);
    RUN_TEST(test_nothing_is_found_when_the_left_and_right_bounds_cross);
 

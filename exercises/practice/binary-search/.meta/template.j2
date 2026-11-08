@@ -1,0 +1,39 @@
+#include "test-framework/unity.h"
+#include "{{ header }}"
+
+void setUp(void)
+{
+}
+
+void tearDown(void)
+{
+}
+{% for case in cases %}
+
+static void {{ case.test_function }}(void)
+{
+{%- if loop.index == 2 %}
+   TEST_IGNORE();   // delete this line to run test
+{%- elif not loop.first %}
+   TEST_IGNORE();
+{%- endif %}
+   int arr[] = {{ case.input.array | quote }};
+   size_t length = sizeof(arr) / sizeof(arr[0]);
+{%- if not case.expect_error %}
+   TEST_ASSERT(&arr[{{ case.expected }}] == binary_search({{ case.input.value }}, arr, length));
+{%- else %}
+   TEST_ASSERT(NULL == binary_search({{ case.input.value }}, arr, length));
+{%- endif %}
+}
+{%- endfor %}
+
+int main(void)
+{
+   UNITY_BEGIN();
+
+{% for case in cases %}
+   RUN_TEST({{ case.test_function }});
+{%- endfor %}
+
+   return UNITY_END();
+}
